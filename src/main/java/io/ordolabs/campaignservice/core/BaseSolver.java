@@ -10,4 +10,6 @@ public abstract class BaseSolver {
 
     public abstract KnapsackSolution solve();
 
+    public abstract boolean canSolve();
+
 }

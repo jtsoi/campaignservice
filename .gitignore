@@ -1,0 +1,7 @@
+*.class
+*.jar
+*.iml
+dependency-reduced-pom*
+
+.idea/**
+target/**

@@ -12,7 +12,6 @@ public class GreedySolverTest {
         KnapsackSolution solution = solver.solve();
 
         assertArrayEquals(new Integer[]{2, 1, 0}, solver.sortedByUtility);
-        assertEquals(15, solution.getPackedValue());
         assertArrayEquals(new long[]{0, 0, 5}, solution.getItemCount());
     }
 }

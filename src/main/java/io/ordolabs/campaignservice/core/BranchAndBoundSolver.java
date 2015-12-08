@@ -1,15 +1,14 @@
 package io.ordolabs.campaignservice.core;
 
-import java.lang.Integer;
-import java.lang.Double;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
-public class GreedySolver extends BaseSolver{
+public class BranchAndBoundSolver extends BaseSolver{
 
     double[] itemUtility;
     Integer[] sortedByUtility;
 
-    public GreedySolver(KnapsackProblem problem){
+    public BranchAndBoundSolver(KnapsackProblem problem){
         super(problem);
     }
 
@@ -38,7 +37,12 @@ public class GreedySolver extends BaseSolver{
                 itemCount[itemIdx]++;
             }
         }
-
+        try {
+            TimeUnit.SECONDS.sleep(30);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new KnapsackSolution(problem, itemCount);
     }
 

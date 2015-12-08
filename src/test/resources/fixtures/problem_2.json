@@ -1,0 +1,10 @@
+{
+  "maxImpressions": 20,
+  "offers": [
+    {
+      "customer": "foo",
+      "impressions": 3,
+      "revenue": 30
+    }
+  ]
+}

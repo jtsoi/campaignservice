@@ -1,0 +1,21 @@
+
+
++ Create a rest hello world using dropwizard
++ Create a resource representing the problem
++ Add a naive greedy solver
++ Create a resource representing the solution
++ Create a problem store that keeps problems in memory
++ Add a Solutions store that keeps solutions in memory
+
+- Add a dp solver
+- Add a bnb solver
+
+-
+
+- Add tests
+
+http://www.ifors.ms.unimelb.edu.au/tutorial/knapsack/bb_unbounded.html
+http://www.ifors.ms.unimelb.edu.au/tutorial/knapsack/dp_unbounded.html
+
+http://times.imkrisna.com/2010/05/branch-and-bound-unbounded-knapsack-java-source-code/
+http://times.imkrisna.com/2010/05/unbounded-knapsack-java-source-code/
