@@ -1,0 +1,8 @@
+{
+  "maxImpressions": 2000000000,
+  "offers": [
+    {"customer": "Acme", "impressions": 1000000, "revenue": 5000},
+    {"customer": "Lorem", "impressions": 2000000, "revenue": 9000},
+    {"customer": "Ipsum", "impressions": 3000000, "revenue": 20000}
+  ]
+}

@@ -39,28 +39,30 @@ public class SolutionManager implements Managed{
     public void thinkAbout(final Problem problem){
         final KnapsackProblem knapsackProblem = problem.getKnapsackProblem();
 
-        GreedySolver naiveSolver = new GreedySolver(knapsackProblem);
-        KnapsackSolution knapsackSolution = naiveSolver.solve();
-        Solution naiveSolution = Solution.fromKnapsackSolution(problem, knapsackSolution);
+        GreedySolver greedySolver = new GreedySolver(knapsackProblem);
+        KnapsackSolution knapsackSolution1 = greedySolver.solve();
+        Solution solution1 = Solution.fromKnapsackSolution(problem, knapsackSolution1);
 
-        solutionResource.addSolution(naiveSolution);
-        problem.setSolutionId(naiveSolution.getId());
+        solutionResource.addSolution(solution1);
+        problem.setSolutionId(solution1.getId());
 
-        // Offload search for optimal solution to a thread pool
+        // Offload search for possible optimal solution to a thread pool
         threadPoolExecutor.submit(() -> {
-            BaseSolver optimalSolver = new DynamicSolver(knapsackProblem);
-            if(!optimalSolver.canSolve()){
-                optimalSolver = new BranchAndBoundSolver(knapsackProblem);
-            }
-            KnapsackSolution optimalKnapsackSolution = optimalSolver.solve();
-            if(optimalKnapsackSolution == null){
-                return;
-            }
-            Solution optimalSolution = Solution.fromKnapsackSolution(problem, knapsackSolution);
+            KnapsackSolution knapsackSolution2 = null;
 
-            solutionResource.addSolution(optimalSolution);
-            problem.setSolutionId(optimalSolution.getId());
-            problem.setOptimalSolution(true);
+            DynamicSolver dynamicSolver = new DynamicSolver(knapsackProblem);
+            if(dynamicSolver.canSolve()){
+                knapsackSolution2 = dynamicSolver.solve();
+            }else{
+                BranchAndBoundSolver bnbSolver = new BranchAndBoundSolver(knapsackProblem, 60);
+                knapsackSolution2 = bnbSolver.solve();
+            }
+
+            Solution solution2 = Solution.fromKnapsackSolution(problem, knapsackSolution2);
+
+            solutionResource.addSolution(solution2);
+            problem.setSolutionId(solution2.getId());
+            problem.setOptimalSolution(knapsackSolution2.isOptimal());
         });
 
     }

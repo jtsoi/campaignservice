@@ -1,5 +1,6 @@
 package io.ordolabs.campaignservice;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -30,6 +31,8 @@ public class CampaignServiceApplication extends Application<CampaignServiceConfi
         environment.lifecycle().manage(sm);
         environment.jersey().register(pr);
         environment.jersey().register(sr);
+
+        environment.getObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
     }
 
 }

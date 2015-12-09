@@ -1,0 +1,12 @@
+{
+  "maxImpressions": 32356000,
+  "offers": [
+    {"customer": "Acme", "impressions": 2000000, "revenue": 200},
+    {"customer": "Lorem", "impressions": 3500000, "revenue": 400},
+    {"customer": "Ipsum", "impressions": 2300000, "revenue": 210},
+    {"customer": "Dolor", "impressions": 8000000, "revenue": 730},
+    {"customer": "SIT", "impressions": 10000000, "revenue": 1000},
+    {"customer": "Amet", "impressions": 1500000, "revenue": 160},
+    {"customer": "Mauris", "impressions": 1000000, "revenue": 100}
+  ]
+}

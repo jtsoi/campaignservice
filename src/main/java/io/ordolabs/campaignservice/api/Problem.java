@@ -65,6 +65,9 @@ public class Problem {
         this.optimalSolution = optimalSolution;
     }
 
+    /**
+     * Create a KnapsackProblem, but filter offers that add no value.
+     */
     @JsonIgnore
     public KnapsackProblem getKnapsackProblem(){
         long[] itemCost = getOffers().stream().filter(Offer::notZero).mapToLong(Offer::getImpressions).toArray();
