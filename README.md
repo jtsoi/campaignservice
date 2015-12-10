@@ -32,6 +32,21 @@ Run slow tests, (16+ minutes)
 - GET /problems/{id}
 - GET /solutions/{id}
 
+### Usage example
+Assuming you have a problem in json format (problem.json)
+
+**Submit a problem**
+
+    curl -X POST -d @problem.json http://localhost:8080/problems --header "Content-Type:application/json"
+
+**Read a problem** to check the solutionId
+
+    curl http://localhost:8080/problems/0 --header "Content-Type:application/json"
+
+**Read a solution**
+
+    curl http://localhost:8080/solutions/0 --header "Content-Type:application/json"
+
 ## Features
 
 The problem of campaign optimization kan be modeled as an Unbounded Knapsack packing problem.
@@ -58,7 +73,7 @@ A quick solver that trades memory for speed, and is suitable for problems where 
 http://www.ifors.ms.unimelb.edu.au/tutorial/knapsack/bb_unbounded.html
 A brute force solver, the can incrementally deliver better results, and starts at same solution as GreedySolver, so the algorithm can be limited in CPU time.
 
-## Improvements
+## Suggestions for improvements
 - BnBSolver can be made parallel to use all CPU cores. On the other hand, single core approach allows multiple problems to be solved in parallel.
 - Add metrics and monitoring annotations
 - Service has no authentication or rate limiting, OK if internal use only.

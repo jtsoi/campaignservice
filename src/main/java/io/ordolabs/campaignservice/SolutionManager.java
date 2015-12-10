@@ -10,6 +10,22 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * SolutionManager implements the strategy to find a naive
+ * solution as fast as possible, and then attempt to find an optimal solution.
+ *
+ * when thinkAbout() is invoked, a GreedySolver is used to find a
+ * OK solution in linear time.
+ * And then a task is created to be offloaded to an ExecutorService,
+ * to find a more optimal solution.
+ *
+ * The second solution will be either solved with DynamicSolver or
+ * BranchAndBoundSolver.
+ *
+ * DynamicSolver can only solve limited set of problems, so
+ * we evaluate first if the problem can be solved using DynamicSolver.
+ * DynamicSolver is much more efficient than BnBSolver.
+ */
 public class SolutionManager implements Managed{
 
     private SolutionResource solutionResource;
