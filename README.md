@@ -1,7 +1,7 @@
 CampaignService
 ===============
 
-[![https://circleci.com/gh/jtsoi/campaignservice.svg?style=svg]][https://circleci.com/gh/jtsoi/campaignservice]
+[![build-status-image]][circle-ci]
 
 CampaignService is a RESTful service that finds optimal
 campaign sets to maximize ad revenue.
@@ -82,3 +82,6 @@ A brute force solver, the can incrementally deliver better results, and starts a
 - DAO is crudely implemented inside the Resource classes. Refactor and maybe make persistent.
 - Add end-to-end tests
 - Not tracking test coverage
+
+[build-status-image]: https://circleci.com/gh/jtsoi/campaignservice.svg?style=svg
+[circle-ci]: https://circleci.com/gh/jtsoi/campaignservice
