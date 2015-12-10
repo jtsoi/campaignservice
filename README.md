@@ -1,6 +1,8 @@
 CampaignService
 ===============
 
+[![https://circleci.com/gh/jtsoi/campaignservice.svg?style=svg]][https://circleci.com/gh/jtsoi/campaignservice]
+
 CampaignService is a RESTful service that finds optimal
 campaign sets to maximize ad revenue.
 
