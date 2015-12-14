@@ -25,19 +25,39 @@ public class DynamicSolver extends BaseSolver{
     int[] lastItemAdded;
 
     /**
-     * Attempt to simplify problem by removing trailing zeros from cost and each item-cost.
-     * Each successful loop will reduce the memory requirements by an order of magnitude.
+     * Simple Euclidean algorithm to find the gcd of two integers.
+     */
+    static int gcd(int a, int b){
+        if(a == 0 || b == 0)
+            return 0;
+        if(a == 1 || b == 1)
+            return 1;
+        a = Math.abs(a);
+        b = Math.abs(b);
+        int remainder = 1;
+        int smaller = Math.min(a, b);
+        int larger = Math.max(a, b);
+        while(remainder > 0){
+            remainder = larger % smaller;
+            larger = smaller;
+            smaller = remainder;
+        }
+        return larger;
+    }
+
+    /**
+     * Attempt to simplify problem by reducing cost and each item-cost by finding gcd.
+     * If gcd is 1, the problem cannot be simplified. Then do nothing.
      */
     private void simplifyProblem(){
         moddedMaxCost = (int) problem.maxCost;
         moddedItemCost = Arrays.stream(problem.itemCost).mapToInt(cost -> (int) cost).toArray();
         itemValue = Arrays.stream(problem.itemValue).mapToInt(value -> (int) value).toArray();
-        while(moddedMaxCost % 10 == 0 && Arrays.stream(moddedItemCost).allMatch(c -> c % 10 == 0)){
-            moddedMaxCost = moddedMaxCost / 10;
-            for(int itemIdx=0; itemIdx<moddedItemCost.length;itemIdx++){
-                moddedItemCost[itemIdx] = moddedItemCost[itemIdx] / 10;
-            }
-        }
+        int gcd = DynamicSolver.gcd(Arrays.stream(moddedItemCost).sorted().reduce(DynamicSolver::gcd).getAsInt(), moddedMaxCost);
+        if(gcd == 1)
+            return;
+        moddedMaxCost = moddedMaxCost / gcd;
+        moddedItemCost = Arrays.stream(moddedItemCost).map(i -> i/gcd).toArray();
     }
 
     @Override
